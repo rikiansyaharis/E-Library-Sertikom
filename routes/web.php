@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Home\HomeController;
-use App\Livewire\Administrator\Genre\GenreComponent;
 use App\Http\Controllers\Administrator\Book\BookController;
 use App\Http\Controllers\Administrator\User\UserController;
 
-use App\Http\Controllers\Administrator\Dashboard\DashboardController;
+use App\Http\Controllers\Administrator\Genre\GenreController;
 use App\Http\Controllers\Book\BookController as UserBookController;
+use App\Http\Controllers\Administrator\Dashboard\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +38,12 @@ Route::prefix('apps')->middleware('auth')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::prefix('genres')->group(function() {
-        Route::get('', GenreComponent::class)->name('admin.genres');
+        Route::get('', [GenreController::class, 'index'])->name('admin.genres');
+        Route::get('create', [GenreController::class, 'create'])->name('admin.genres.create');
+        Route::post('store', [GenreController::class, 'store'])->name('admin.genres.store');
+        Route::get('edit/{id}', [GenreController::class, 'edit'])->name('admin.genres.edit');
+        Route::post('update/{id}', [GenreController::class, 'update'])->name('admin.genres.update');
+        Route::get('delete/{id}',[GenreController::class,'delete'])->name('admin.genres.delete');
     });
 
     Route::prefix('books')->group(function() {

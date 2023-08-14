@@ -54,12 +54,10 @@
     <link rel="stylesheet" href="{{ asset('administrator/assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('administrator/assets/css/colors/default.css') }}" id="colorSkinCSS') }}">
 
-    @livewireStyles
 </head>
 <body class="crm_body_bg">
 
     @yield('app')
 
-    @livewireScripts
 </body>
 </html>
